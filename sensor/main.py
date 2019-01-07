@@ -22,7 +22,7 @@ def post_concentration(*args):
     try:
       doc_ref.set({
         'concentration': result['concentration'],
-        'timestamp': timestamp.isoformat()
+        'timestamp': firestore.SERVER_TIMESTAMP
       })
       break
     except exceptions.ServerError as err:
