@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Line, ChartData } from 'react-chartjs-2';
 import { CO2State, ConcentrationRecord, collection, QuerySnapshot } from '../modules/concentration';
 import { ActionDispatcher } from './container';
+import { ChartOptions } from 'chart.js';
 
 interface Props {
     data: CO2State;
@@ -45,6 +46,19 @@ export class Concentration extends React.Component<Props, State, {}> {
             }]
         }
     }
+
+    chartOptions(): ChartOptions {
+        return {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        suggestedMax: 1500
+                    }
+                }]
+            }
+        }
+    }
     
     componentWillMount() {
         this.props.actions.fetchData(this.state.dataRange);
@@ -70,7 +84,7 @@ export class Concentration extends React.Component<Props, State, {}> {
                         <option value="24">24 Hours</option>
                     </select>
                 </div>
-                <Line data={this.chartData()}/>
+                <Line data={this.chartData()} options={this.chartOptions()}/>
             </div>
         )
     }
