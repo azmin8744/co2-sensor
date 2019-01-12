@@ -4,8 +4,9 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './dist',
-        publicPath: './'
+        contentBase: './',
+        publicPath: './dist',
+        index: './dist/index.dev.html',
     },
     module: {
         rules: [
